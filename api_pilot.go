@@ -369,12 +369,6 @@ func (a *PilotApiService) GetCurrencyPair(ctx context.Context, currencyPair stri
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListTickersOpts Optional parameters for the method 'ListTickers'
-type ListTickersOpts struct {
-	CurrencyPair optional.String
-	Timezone     optional.String
-}
-
 /*
 ListTickers Retrieve ticker information
 Return only related data if &#x60;currency_pair&#x60; is specified; otherwise return all of them
@@ -467,13 +461,6 @@ func (a *PilotApiService) ListTickers(ctx context.Context, localVarOptionals *Li
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// ListOrderBookOpts Optional parameters for the method 'ListOrderBook'
-type ListOrderBookOpts struct {
-	Interval optional.String
-	Limit    optional.Int32
-	WithId   optional.Bool
 }
 
 /*
@@ -574,16 +561,6 @@ func (a *PilotApiService) ListOrderBook(ctx context.Context, currencyPair string
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// ListTradesOpts Optional parameters for the method 'ListTrades'
-type ListTradesOpts struct {
-	Limit   optional.Int32
-	LastId  optional.String
-	Reverse optional.Bool
-	From    optional.Int64
-	To      optional.Int64
-	Page    optional.Int32
 }
 
 /*
@@ -698,14 +675,6 @@ func (a *PilotApiService) ListTrades(ctx context.Context, currencyPair string, l
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListCandlesticksOpts Optional parameters for the method 'ListCandlesticks'
-type ListCandlesticksOpts struct {
-	Limit    optional.Int32
-	From     optional.Int64
-	To       optional.Int64
-	Interval optional.String
-}
-
 /*
 ListCandlesticks Market candlesticks
 Maximum of 1000 points can be returned in a query. Be sure not to exceed the limit when specifying from, to and interval
@@ -808,11 +777,6 @@ func (a *PilotApiService) ListCandlesticks(ctx context.Context, currencyPair str
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetFeeOpts Optional parameters for the method 'GetFee'
-type GetFeeOpts struct {
-	CurrencyPair optional.String
 }
 
 /*
@@ -1003,11 +967,6 @@ func (a *PilotApiService) GetBatchSpotFee(ctx context.Context, currencyPairs str
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListSpotAccountsOpts Optional parameters for the method 'ListSpotAccounts'
-type ListSpotAccountsOpts struct {
-	Currency optional.String
-}
-
 /*
 ListSpotAccounts List spot accounts
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1101,16 +1060,6 @@ func (a *PilotApiService) ListSpotAccounts(ctx context.Context, localVarOptional
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// ListSpotAccountBookOpts Optional parameters for the method 'ListSpotAccountBook'
-type ListSpotAccountBookOpts struct {
-	Currency optional.String
-	From     optional.Int64
-	To       optional.Int64
-	Page     optional.Int32
-	Limit    optional.Int32
-	Type_    optional.String
 }
 
 /*
@@ -1229,11 +1178,6 @@ func (a *PilotApiService) ListSpotAccountBook(ctx context.Context, localVarOptio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateBatchOrdersOpts Optional parameters for the method 'CreateBatchOrders'
-type CreateBatchOrdersOpts struct {
-	XGateExptime optional.Int64
-}
-
 /*
 CreateBatchOrders Create a batch of orders
 Batch orders requirements:  1. custom order field &#x60;text&#x60; is required 2. At most 4 currency pairs, maximum 10 orders each, are allowed in one request 3. No mixture of spot orders and margin orders, i.e. &#x60;account&#x60; must be identical for all orders
@@ -1331,13 +1275,6 @@ func (a *PilotApiService) CreateBatchOrders(ctx context.Context, order []Order, 
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// ListAllOpenOrdersOpts Optional parameters for the method 'ListAllOpenOrders'
-type ListAllOpenOrdersOpts struct {
-	Page    optional.Int32
-	Limit   optional.Int32
-	Account optional.String
 }
 
 /*
@@ -1538,16 +1475,6 @@ func (a *PilotApiService) CreateCrossLiquidateOrder(ctx context.Context, liquida
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListOrdersOpts Optional parameters for the method 'ListOrders'
-type ListOrdersOpts struct {
-	Page    optional.Int32
-	Limit   optional.Int32
-	Account optional.String
-	From    optional.Int64
-	To      optional.Int64
-	Side    optional.String
-}
-
 /*
 ListOrders List orders
 Spot, portfolio and margin orders are returned by default. If cross margin orders are needed, &#x60;account&#x60; must be set to &#x60;cross_margin&#x60;  When &#x60;status&#x60; is &#x60;open&#x60;, i.e., listing open orders, only pagination parameters &#x60;page&#x60; and &#x60;limit&#x60; are supported and &#x60;limit&#x60; cannot be larger than 100. Query by &#x60;side&#x60; and time range parameters &#x60;from&#x60; and &#x60;to&#x60; are not supported.  When &#x60;status&#x60; is &#x60;finished&#x60;, i.e., listing finished orders, pagination parameters, time range parameters &#x60;from&#x60; and &#x60;to&#x60;, and &#x60;side&#x60; parameters are all supported. Time range parameters are handled as order finish time.
@@ -1668,11 +1595,6 @@ func (a *PilotApiService) ListOrders(ctx context.Context, currencyPair string, s
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateOrderOpts Optional parameters for the method 'CreateOrder'
-type CreateOrderOpts struct {
-	XGateExptime optional.Int64
-}
-
 /*
 CreateOrder Create an order
 You can place orders with spot, portfolio, margin or cross margin account through setting the &#x60;account &#x60;field. It defaults to &#x60;spot&#x60;, which means spot account is used to place orders.  If the user is using unified account, it defaults to the unified account.  When margin account is used, i.e., &#x60;account&#x60; is &#x60;margin&#x60;, &#x60;auto_borrow&#x60; field can be set to &#x60;true&#x60; to enable the server to borrow the amount lacked using &#x60;POST /margin/loans&#x60; when your account&#39;s balance is not enough. Whether margin orders&#39; fill will be used to repay margin loans automatically is determined by the auto repayment setting in your **margin account**, which can be updated or queried using &#x60;/margin/auto_repay&#x60; API.  When cross margin account is used, i.e., &#x60;account&#x60; is &#x60;cross_margin&#x60;, &#x60;auto_borrow&#x60; can also be enabled to achieve borrowing the insufficient amount automatically if cross account&#39;s balance is not enough. But it differs from margin account that automatic repayment is determined by order&#39;s &#x60;auto_repay&#x60; field and only current order&#39;s fill will be used to repay cross margin loans.  Automatic repayment will be triggered when the order is finished, i.e., its status is either &#x60;cancelled&#x60; or &#x60;closed&#x60;.  **Order status**  An order waiting to be filled is &#x60;open&#x60;, and it stays &#x60;open&#x60; until it is filled totally. If fully filled, order is finished and its status turns to &#x60;closed&#x60;.If the order is cancelled before it is totally filled, whether or not partially filled, its status is &#x60;cancelled&#x60;. **Iceberg order**  &#x60;iceberg&#x60; field can be used to set the amount shown. Set to &#x60;-1&#x60; to hide the order completely. Note that the hidden part&#39;s fee will be charged using taker&#39;s fee rate. **Self Trade Prevention**  - Set &#x60;stp_act&#x60; to decide the strategy of self-trade prevention. For detailed usage, refer to the &#x60;stp_act&#x60; parameter in request body
@@ -1770,15 +1692,6 @@ func (a *PilotApiService) CreateOrder(ctx context.Context, order Order, localVar
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// CancelOrdersOpts Optional parameters for the method 'CancelOrders'
-type CancelOrdersOpts struct {
-	CurrencyPair optional.String
-	Side         optional.String
-	Account      optional.String
-	ActionMode   optional.String
-	XGateExptime optional.Int64
 }
 
 /*
@@ -1893,11 +1806,6 @@ func (a *PilotApiService) CancelOrders(ctx context.Context, localVarOptionals *C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CancelBatchOrdersOpts Optional parameters for the method 'CancelBatchOrders'
-type CancelBatchOrdersOpts struct {
-	XGateExptime optional.Int64
-}
-
 /*
 CancelBatchOrders Cancel a batch of orders with an ID list
 Multiple currency pairs can be specified, but maximum 20 orders are allowed per request
@@ -1995,11 +1903,6 @@ func (a *PilotApiService) CancelBatchOrders(ctx context.Context, cancelBatchOrde
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetOrderOpts Optional parameters for the method 'GetOrder'
-type GetOrderOpts struct {
-	Account optional.String
 }
 
 /*
@@ -2101,13 +2004,6 @@ func (a *PilotApiService) GetOrder(ctx context.Context, orderId string, currency
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// CancelOrderOpts Optional parameters for the method 'CancelOrder'
-type CancelOrderOpts struct {
-	Account      optional.String
-	ActionMode   optional.String
-	XGateExptime optional.Int64
 }
 
 /*
@@ -2219,13 +2115,6 @@ func (a *PilotApiService) CancelOrder(ctx context.Context, orderId string, curre
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// AmendOrderOpts Optional parameters for the method 'AmendOrder'
-type AmendOrderOpts struct {
-	CurrencyPair optional.String
-	Account      optional.String
-	XGateExptime optional.Int64
-}
-
 /*
 AmendOrder Amend an order
 By default, the orders of spot, portfolio and margin account are updated.  If you need to modify orders of the &#x60;cross-margin&#x60; account, you must specify account as &#x60;cross_margin&#x60;.  For portfolio margin account, only &#x60;cross_margin&#x60; account is supported.  Currently, both request body and query support currency_pair and account parameter passing, but request body has higher priority  Currently, only supports modification of &#x60;price&#x60; or &#x60;amount&#x60; fields.  Regarding rate limiting: modify order and create order sharing rate limiting rules. Regarding matching priority: Only reducing the quantity without modifying the priority of matching, altering the price or increasing the quantity will adjust the priority to the new price at the end Note: If the modified amount is less than the fill amount, the order will be cancelled.
@@ -2334,17 +2223,6 @@ func (a *PilotApiService) AmendOrder(ctx context.Context, orderId string, orderP
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// ListMyTradesOpts Optional parameters for the method 'ListMyTrades'
-type ListMyTradesOpts struct {
-	CurrencyPair optional.String
-	Limit        optional.Int32
-	Page         optional.Int32
-	OrderId      optional.String
-	Account      optional.String
-	From         optional.Int64
-	To           optional.Int64
 }
 
 /*
@@ -2645,11 +2523,6 @@ func (a *PilotApiService) CountdownCancelAllSpot(ctx context.Context, countdownC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// AmendBatchOrdersOpts Optional parameters for the method 'AmendBatchOrders'
-type AmendBatchOrdersOpts struct {
-	XGateExptime optional.Int64
-}
-
 /*
 AmendBatchOrders Batch modification of orders
 Default modification of orders for spot, portfolio, and margin accounts. To modify orders for a cross margin account, the &#x60;account&#x60; parameter must be specified as &#x60;cross_margin&#x60;.  For portfolio margin accounts, the &#x60;account&#x60; parameter can only be specified as &#x60;cross_margin&#x60;. Currently, only modifications to price or quantity (choose one) are supported. When modifying unfinished orders, a maximum of 5 orders can be batch-modified in one request. The request parameters should be passed in an array format. During batch modification, if one order modification fails, the modification process will continue with the next order. After execution, the response will include corresponding failure information for the failed orders. The sequence of calling for batch order modification should be consistent with the order in the order list. The response content order for batch order modification will also be consistent with the order in the order list.
@@ -2747,12 +2620,6 @@ func (a *PilotApiService) AmendBatchOrders(ctx context.Context, batchAmendItem [
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// GetSpotInsuranceHistoryOpts Optional parameters for the method 'GetSpotInsuranceHistory'
-type GetSpotInsuranceHistoryOpts struct {
-	Page  optional.Int32
-	Limit optional.Int32
 }
 
 /*
@@ -2860,14 +2727,6 @@ func (a *PilotApiService) GetSpotInsuranceHistory(ctx context.Context, business 
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// ListSpotPriceTriggeredOrdersOpts Optional parameters for the method 'ListSpotPriceTriggeredOrders'
-type ListSpotPriceTriggeredOrdersOpts struct {
-	Market  optional.String
-	Account optional.String
-	Limit   optional.Int32
-	Offset  optional.Int32
 }
 
 /*
@@ -3070,12 +2929,6 @@ func (a *PilotApiService) CreateSpotPriceTriggeredOrder(ctx context.Context, spo
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-// CancelSpotPriceTriggeredOrderListOpts Optional parameters for the method 'CancelSpotPriceTriggeredOrderList'
-type CancelSpotPriceTriggeredOrderListOpts struct {
-	Market  optional.String
-	Account optional.String
 }
 
 /*
